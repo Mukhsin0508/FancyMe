@@ -2,7 +2,6 @@ import os
 import random
 import subprocess
 from datetime import datetime
-from opcode import opname
 
 # Path to my repo where this script will live
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
