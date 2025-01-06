@@ -11,13 +11,12 @@ os.chdir(SCRIPT_DIR)
 # Random commit messages to choose from!
 COMMIT_MESSAGES = [
     "Feeding the streak monster!",
-    "Incrementing my awesomeness, one day at a time."
-    "Just adding some good vibes here."
-    "Mmmm... fresh commits for the day."
-    "Because daily streak = unstoppable me!"
-    "Committing my future success, obviously."
+    "Incrementing my awesomeness, one day at a time.",
+    "Just adding some good vibes here.",
+    "Mmmm... fresh commits for the day.",
+    "Because daily streak = unstoppable me!",
+    "Committing my future success, obviously.",
     "Fix: fix on the issue JIRA:413/redis.config.vm.overcommit_memory=1",
-
 ]
 
 def read_number():
