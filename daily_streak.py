@@ -62,12 +62,18 @@ def update_cron_with_random_time():
     :return: None
     """
     # ==== Generate random hour (0-23) and minute (0-59) ====
-    random_hour = random.randint(0, 23)
-    random_minute = random.randint(0, 59)
+    random_hour_1 = random.randint(0, 23)
+    random_hour_2 = random.randint(0, 23)
+
+    random_minute_1 = random.randint(0, 59)
+    random_minute_2 = random.randint(0, 59)
 
     # ==== The new cron job command ====
-    new_cron_command = (f"{random_minute} {random_hour} * * * cd {SCRIPT_DIR} && "
+    new_cron_command_1 = (f"{random_minute_1} {random_hour_1} * * * cd {SCRIPT_DIR} && "
                         f"python3 {os.path.join(SCRIPT_DIR, 'daily_streak.py')}\n")
+    new_cron_command_2 = (f"{random_minute_2} {random_hour_2} * * * cd {SCRIPT_DIR} && "
+                        f"python3 {os.path.join(SCRIPT_DIR, 'daily_streak.py')} >> {SCRIPT_DIR}/cron.log 2>&1\n")
+
 
     # ==== Dump current crontab to a temp file ====
     cron_file = "/tmp/current_cron"
@@ -85,13 +91,13 @@ def update_cron_with_random_time():
                 file.write(line)
 
         # ==== add new line for daily_streak.py ====
-        file.write(new_cron_command)
+        file.write(new_cron_command_1 and new_cron_command_2)
 
     # ==== Load new crontab ====
     os.system(f"crontab {cron_file}")
     os.remove(cron_file)
 
-    print(f"Cron job updated to run at {random_hour}:{random_minute} daily.")
+    print(f"Updated cron job to run tomorrow at {random_hour_1}:{random_minute_1} and {random_hour_2}:{random_minute_2}")
 
 def main():
     # ==== Step 1: Read current number ====
